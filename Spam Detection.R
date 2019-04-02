@@ -6,13 +6,13 @@
 
 #Importing train set
 library(readr)
-train = read_delim("C:/Users/Lenovo/Desktop/Northmill/train.txt", 
+train = read_delim("path/train.txt", 
                     "\t", escape_double = FALSE, col_names = FALSE, 
                     trim_ws = TRUE)
 colnames(train) = c("type","text")  #Rename column names
 
 #Importing test set
-test = read_delim("C:/Users/Lenovo/Desktop/Northmill/test.txt", 
+test = read_delim("path/test.txt", 
                    "\t", escape_double = FALSE, col_names = FALSE, 
                    col_types = cols(X1 = col_integer()), 
                    trim_ws = TRUE)
@@ -110,6 +110,6 @@ Probabilities = predict(model, test.selected, type = "raw") #Probability of bein
 Submission = as.data.frame(cbind(seq(from = 1, to = 574, by = 1),Probabilities[,2],Labels))
 colnames(Submission) = c("No.","Probability of Being Spam","Predicted Label")
 Submission$`Predicted Label` = ifelse(Submission$`Predicted Label`==1,"Ham","Spam")
-write.csv(Submission,file = "C:\\Users\\Lenovo\\Desktop\\Northmill\\Submission.csv",row.names = F)
+write.csv(Submission,file = "path",row.names = F)
 
 
